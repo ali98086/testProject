@@ -11,20 +11,23 @@ use Illuminate\Http\Request;
 class PostController extends Controller
 {
 
+    /**
+     * Display all the specified V1 posts.
+     * @return objects all posts
+     */
     public function index()
-    {        
-    SeePostsEvent::dispatch(); 
-        // return Post::paginate(2);
+    {
+        SeePostsEvent::dispatch();
         return Post::all();
     }
 
     /**
-     * Display the specified resource.
+     * Display the post by route model binding.
+     * @param object $post
+     * @return object post
      */
     public function show(Post $post)
     {
-        // SeeEvent::dispatch($post); 
         return $post;
     }
-    
 }

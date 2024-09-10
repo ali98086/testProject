@@ -9,11 +9,11 @@ use Illuminate\Http\Request;
 class PostController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display all the specified V2 posts.
+     * @return objects all posts
      */
     public function index()
     {
-        // return Post::paginate(2);
         return Post::all();
     }
 

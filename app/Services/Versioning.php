@@ -9,16 +9,25 @@ use App\Models\Post;
 class Versioning
 {
     
+    /**
+     * Display all posts or a specific post according to the address entered by the user
+     * 
+     * @param string $versionRoute for determine version of post or posts
+     * @param object $post for determine one of post 
+     * @return object post or all posts by json format
+     */
 
         public static function showPost($versionRoute , $post){
 
-
-            //dynamic versioning
-
+            
             $apiNamespace= 'App\Http\Controllers\API\\';
-            $apiPostClassName= '\PostController';
-            $class= $apiNamespace.$versionRoute.$apiPostClassName;
+
+            $apiPostControllerName= '\PostController';
+
+            $class= $apiNamespace.$versionRoute.$apiPostControllerName;
+
             $obj= '';
+
             $dir = app_path('Http'.DIRECTORY_SEPARATOR.'Controllers'.DIRECTORY_SEPARATOR.'API');
 
 
@@ -40,7 +49,7 @@ class Versioning
 
                         foreach(scandir($dir) as $subDirectory){
 
-                            $class= $apiNamespace.$subDirectory.$apiPostClassName;
+                            $class= $apiNamespace.$subDirectory.$apiPostControllerName;
 
                             if(class_exists($class) && method_exists($class,'show')){
 
